@@ -32,6 +32,14 @@ Add the SDK as a yii2 application `component` in the `config/main.php`:
 ]
 ```
 
+添加基础配置信息和微信支付信息到 `config/params.php`:
+```php
+// 微信配置 具体可参考EasyWechat
+'wechatConfig' => [],
+
+// 微信支付配置 具体可参考EasyWechat
+'wechatPayConfig' => [],
+```
 ## 使用例子
 
 微信网页授权
@@ -63,13 +71,11 @@ if ($result['return_code'] == 'SUCCESS')
 {
     $prepayId = $result['prepay_id'];
     $config = $payment->jssdk->sdkConfig($prepayId);
-    return $config;
 }
 else
 {
     throw new yii\base\ErrorException('微信支付异常, 请稍后再试');
 }  
-
 
 return $this->render('wxpay', [
     'jssdk' => $app->jssdk, // $app通过上面的获取实例来获取
@@ -78,11 +84,29 @@ return $this->render('wxpay', [
 
 ```
 
+JSSDK发起支付
+```
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    //数组内为jssdk授权可用的方法，按需添加，详细查看微信jssdk的方法
+    wx.config(<?php echo $jssdk->buildConfig(array('chooseWXPay'), true) ?>);
+    // 发起支付
+    wx.chooseWXPay({
+        timestamp: <?= $config['timestamp'] ?>,
+        nonceStr: '<?= $config['nonceStr'] ?>',
+        package: '<?= $config['package'] ?>',
+        signType: '<?= $config['signType'] ?>',
+        paySign: '<?= $config['paySign'] ?>', // 支付签名
+        success: function (res) {
+            // 支付成功后的回调函数
+        }
+    });
+</script>
+```
 
-[更多的配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)
+[更多的微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
+[更多的微信JSSDK支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)
 
 
 ### 更多的文档
 看 [EasyWeChat Docs](https://www.easywechat.com/docs/master).
-
-感谢 `overtrue/wechat` , realy a easy way to play with wechat SDK 😁.
