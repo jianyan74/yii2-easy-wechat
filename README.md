@@ -1,4 +1,7 @@
 # yii2-easy-wechat
+
+本项目由于[max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 [overtrue/wechat](https://github.com/overtrue/wechat) 4.0 改造而成
+
 WeChat SDK for yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wechat).     
 This extension helps you access `overtrue/wechat` application in a simple & familiar way:   `Yii::$app->wechat`.   
 
@@ -29,67 +32,57 @@ Add the SDK as a yii2 application `component` in the `config/main.php`:
 ]
 ```
 
-## 使用
+## 使用例子
+
+微信网页授权
+
 ```php
-
-// here are two representative examples that will help you:
-
-// 微信网页授权:
-if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
-	return Yii::$app->wechat->authorizeRequired()->send();
+if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) 
+{
+    return Yii::$app->wechat->authorizeRequired()->send();
 }
+```
+获取实例
 
-// 微信支付(JsApi):
+```php
+$app = Yii::$app->wechat->getApp();
+```
+微信支付(JsApi):
+
+```php
+// 支付参数
 $orderData = [ 
-	'openid' => '.. '
-	// ... etc. 
+    'openid' => '.. '
+    // ... etc. 
 ];
-$order = new WechatOrder($orderData);
-$payment = Yii::$app->wechat->payment;
-$prepayRequest = $payment->prepare($order);
-if($prepayRequest->return_code = 'SUCCESS' && $prepayRequest->result_code == 'SUCCESS') {
-	$prepayId = $prepayRequest->prepay_id;
-}else{
-	throw new yii\base\ErrorException('微信支付异常, 请稍后再试');
-}
 
-$jsApiConfig = $payment->configForPayment($prepayId);
+// 生成支付配置
+$payment = Yii::$app->wechat->getPayApp();
+$result = $payment->order->unify($orderData);
+if ($result['return_code'] == 'SUCCESS')
+{
+    $prepayId = $result['prepay_id'];
+    $config = $payment->jssdk->sdkConfig($prepayId);
+    return $config;
+}
+else
+{
+    throw new yii\base\ErrorException('微信支付异常, 请稍后再试');
+}  
+
 
 return $this->render('wxpay', [
-	'jsApiConfig' => $jsApiConfig,
-	'orderData'   => $orderData
+    'jssdk' => $app->jssdk, // $app通过上面的获取实例来获取
+    'config' => $config
 ]);
 
 ```
 
 
-### How to load Wechat configures?
-the `overtrue/wechat` application always constructs with a `$options` parameter. 
-I made the options as a yii2 param in the `params.php`:
-
-recomended way:
-```php
-// in this way you need to create a wechat.php in the same directory of params.php
-// put contents in the wechat.php like:
-// return [ 
-// 		// wechat options here 
-// ];
-'WECHAT' => require(__DIR__.'/wechat.php'),
-```
-OR 
-```php
-'WECHAT' => [ // wechat options here ]
-```
-
-[Wechat options configure help docs.](https://easywechat.org/zh-cn/docs/configuration.html)
+[更多的配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)
 
 
-### More documentation
-see [EasyWeChat Docs](https://easywechat.org/zh-cn/docs/index.html).
+### 更多的文档
+看 [EasyWeChat Docs](https://www.easywechat.com/docs/master).
 
-Thanks to `overtrue/wechat` , realy a easy way to play with wechat SDK 😁.
-
-## More repos for Yii2:
-[yii2-ckeditor-widget](https://github.com/max-wen/yii2-ckeditor-widget)   
-[yii2-adminlte-gii](https://github.com/max-wen/yii2-adminlte-gii)   
-[yii2-curl](https://github.com/max-wen/yii2-curl)   
+感谢 `overtrue/wechat` , realy a easy way to play with wechat SDK 😁.
