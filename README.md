@@ -41,10 +41,14 @@ composer require jianyan74/yii2-easy-wechat
 
 // 微信支付配置 具体可参考EasyWechat
 'wechatPayConfig' => [],
-```
-[微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
 
-[微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)
+// 微信小程序配置 具体可参考EasyWechat
+'wechatMiniConfig' => [],
+```
+
+[微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
+[微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)  
+[微信小程序配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/mini-program/index)
 
 ## 使用例子
 
@@ -56,10 +60,20 @@ if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized())
     return Yii::$app->wechat->authorizeRequired()->send();
 }
 ```
-获取实例
+获取微信SDK实例
 
 ```php
 $app = Yii::$app->wechat->getApp();
+```
+获取微信支付SDK实例
+
+```php
+$payApp = Yii::$app->wechat->getPayApp();
+```
+获取微信小程序实例
+
+```php
+$miniApp = Yii::$app->wechat->getMiniApp();
 ```
 微信支付(JsApi):
 

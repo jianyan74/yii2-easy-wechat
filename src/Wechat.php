@@ -37,11 +37,18 @@ class Wechat extends Component
     private static $_app;
 
     /**
-     * 支付SKD
+     * 支付 SKD
      *
      * @var Factory
      */
     private static $_payApp;
+
+    /**
+     * 小程序 SKD
+     *
+     * @var Factory
+     */
+    private static $_miniApp;
 
     /**
      * @var WechatUser
@@ -49,7 +56,8 @@ class Wechat extends Component
     private static $_user;
 
     /**
-     * @return yii\web\Response
+     * @return $this|Yii\web\Response
+     * @throws \yii\base\InvalidConfigException
      */
     public function authorizeRequired()
     {
@@ -137,9 +145,24 @@ class Wechat extends Component
      *
      * @return Factory
      */
+    public function getMiniApp()
+    {
+        if (!self::$_miniApp instanceof Factory)
+        {
+            self::$_miniApp = Factory::miniProgram(Yii::$app->params['wechatMiniConfig']);
+        }
+
+        return self::$_miniApp;
+    }
+
+    /**
+     * 获取 EasyWeChat 微信支付实例
+     *
+     * @return Factory
+     */
     public function getPayApp()
     {
-        if (!self::$_payApp)
+        if (!self::$_payApp instanceof Factory)
         {
             self::$_payApp = Factory::payment(Yii::$app->params['wechatPayConfig']);
         }
