@@ -8,6 +8,7 @@
 			"name": "jianyan74"
 		}
 	],
+	"type": "yii2-extension",
 	"require": {
 		"php": ">=7.0",
 		"yiisoft/yii2": "~2.0.6",
