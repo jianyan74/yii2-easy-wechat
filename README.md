@@ -1,13 +1,15 @@
 # yii2-easy-wechat
 
+> 基于最新的 overtrue/wechat 4.x
+
 本项目由于[max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 [overtrue/wechat](https://github.com/overtrue/wechat) 4.0 改造而成
 
 WeChat SDK for yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wechat).     
 This extension helps you access `overtrue/wechat` application in a simple & familiar way:   `Yii::$app->wechat`.   
 
-[![Latest Stable Version](https://poser.pugx.org/maxwen/yii2-easy-wechat/v/stable)](https://packagist.org/packages/maxwen/yii2-easy-wechat)
-[![Total Downloads](https://poser.pugx.org/maxwen/yii2-easy-wechat/downloads)](https://packagist.org/packages/maxwen/yii2-easy-wechat)
-[![License](https://poser.pugx.org/maxwen/yii2-easy-wechat/license)](https://packagist.org/packages/maxwen/yii2-easy-wechat)
+[![Latest Stable Version](https://poser.pugx.org/jianyan74/yii2-easy-wechat/v/stable)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
+[![Total Downloads](https://poser.pugx.org/jianyan74/yii2-easy-wechat/downloads)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
+[![License](https://poser.pugx.org/jianyan74/yii2-easy-wechat/license)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
 
 ## 安装
 ```
@@ -16,7 +18,7 @@ composer require jianyan74/yii2-easy-wechat
 
 ## 配置
 
-Add the SDK as a yii2 application `component` in the `config/main.php`:
+添加 SDK 到Yii2的 `config/main.php` 的 `component`:
 
 ```php
 
@@ -40,6 +42,9 @@ Add the SDK as a yii2 application `component` in the `config/main.php`:
 // 微信支付配置 具体可参考EasyWechat
 'wechatPayConfig' => [],
 ```
+[微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
+[微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)
+
 ## 使用例子
 
 微信网页授权
@@ -103,10 +108,6 @@ JSSDK发起支付
     });
 </script>
 ```
-
-[更多的微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
-[更多的微信JSSDK支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)
-
 
 ### 更多的文档
 看 [EasyWeChat Docs](https://www.easywechat.com/docs/master).
