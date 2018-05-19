@@ -111,4 +111,12 @@ JSSDK发起支付
 ```
 
 ### 更多的文档
-看 [EasyWeChat Docs](https://www.easywechat.com/docs/master).
+
+ [EasyWeChat Docs](https://www.easywechat.com/docs/master).
+
+### 问题反馈
+
+在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
+
+QQ群：[655084090](https://jq.qq.com/?_wv=1027&k=4BeVA2r)
+
