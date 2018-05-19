@@ -15,7 +15,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"jianyan74\\easywechat\\": "./src"
+			"jianyan\\easywechat\\": "./src"
 		}
 	}
 }

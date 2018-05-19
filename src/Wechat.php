@@ -1,5 +1,5 @@
 <?php
-namespace jianyan74\easywechat;
+namespace jianyan\easywechat;
 
 use Yii;
 use EasyWeChat\Factory;
