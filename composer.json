@@ -2,7 +2,6 @@
 	"name": "jianyan74/yii2-easy-wechat",
 	"description": "WeChat SDK for yii2, 基于 overtrue/easywechat",
 	"keywords": ["yii2", "wechat", "easywechat", "php", "jianyan74"],
-	"minimum-stability": "dev",
 	"license": "MIT",
 	"authors": [
 		{

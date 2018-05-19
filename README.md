@@ -34,15 +34,16 @@ composer require jianyan74/yii2-easy-wechat
 ]
 ```
 
-添加基础配置信息和微信支付信息到 `config/params.php`:
+设置基础配置信息和微信支付信息到 `config/params.php`:
 ```php
-// 微信配置 具体可参考EasyWechat
+// 微信配置 具体可参考EasyWechat 
 'wechatConfig' => [],
 
 // 微信支付配置 具体可参考EasyWechat
 'wechatPayConfig' => [],
 ```
 [微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
+
 [微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)
 
 ## 使用例子
