@@ -2,7 +2,7 @@
 
 > 基于最新的 overtrue/wechat 4.x
 
-本项目由于[max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 [overtrue/wechat](https://github.com/overtrue/wechat) 4.0 改造而成
+由于 [max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 EasyWechat 4.x 所以建立该项目
 
 WeChat SDK for Yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wechat).     
 这个扩展可以简单的用yii2的方式去调用EasyWechat:   `Yii::$app->wechat`.   
@@ -63,17 +63,17 @@ if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized())
 获取微信SDK实例
 
 ```php
-$app = Yii::$app->wechat->app();
+$app = Yii::$app->wechat->app;
 ```
 获取微信支付SDK实例
 
 ```php
-$payment = Yii::$app->wechat->payment();
+$payment = Yii::$app->wechat->payment;
 ```
 获取微信小程序实例
 
 ```php
-$miniProgram = Yii::$app->wechat->miniProgram();
+$miniProgram = Yii::$app->wechat->miniProgram;
 ```
 微信支付(JsApi):
 
@@ -85,7 +85,7 @@ $orderData = [
 ];
 
 // 生成支付配置
-$payment = Yii::$app->wechat->payment();
+$payment = Yii::$app->wechat->payment;
 $result = $payment->order->unify($orderData);
 if ($result['return_code'] == 'SUCCESS')
 {
