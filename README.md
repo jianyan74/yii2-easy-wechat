@@ -4,8 +4,8 @@
 
 本项目由于[max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 [overtrue/wechat](https://github.com/overtrue/wechat) 4.0 改造而成
 
-WeChat SDK for yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wechat).     
-This extension helps you access `overtrue/wechat` application in a simple & familiar way:   `Yii::$app->wechat`.   
+WeChat SDK for Yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wechat).     
+这个扩展可以简单的用yii2的方式去调用EasyWechat:   `Yii::$app->wechat`.   
 
 [![Latest Stable Version](https://poser.pugx.org/jianyan74/yii2-easy-wechat/v/stable)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
 [![Total Downloads](https://poser.pugx.org/jianyan74/yii2-easy-wechat/downloads)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
