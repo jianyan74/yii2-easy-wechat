@@ -25,7 +25,7 @@ composer require jianyan74/yii2-easy-wechat
 'components' => [
 	// ...
 	'wechat' => [
-		'class' => 'jianyan74\easywechat\Wechat',
+		'class' => 'jianyan\easywechat\Wechat',
 		// 'userOptions' => []  # 用户身份类参数
 		// 'sessionParam' => '' # 微信用户信息将存储在会话在这个密钥
 		// 'returnUrlParam' => '' # returnUrl 存储在会话中
