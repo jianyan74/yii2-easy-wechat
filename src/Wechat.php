@@ -41,14 +41,14 @@ class Wechat extends Component
      *
      * @var Factory
      */
-    private static $_payApp;
+    private static $_payment;
 
     /**
      * 小程序 SKD
      *
      * @var Factory
      */
-    private static $_miniApp;
+    private static $_miniProgram;
 
     /**
      * @var WechatUser
@@ -145,14 +145,14 @@ class Wechat extends Component
      *
      * @return Factory
      */
-    public function getMiniApp()
+    public function getPayment()
     {
-        if (!self::$_miniApp instanceof Factory)
+        if (!self::$_payment instanceof Factory)
         {
-            self::$_miniApp = Factory::miniProgram(Yii::$app->params['wechatMiniConfig']);
+            self::$_payment = Factory::payment(Yii::$app->params['wechatPaymentConfig']);
         }
 
-        return self::$_miniApp;
+        return self::$_payment;
     }
 
     /**
@@ -160,14 +160,14 @@ class Wechat extends Component
      *
      * @return Factory
      */
-    public function getPayApp()
+    public function getMiniProgram()
     {
-        if (!self::$_payApp instanceof Factory)
+        if (!self::$_miniProgram instanceof Factory)
         {
-            self::$_payApp = Factory::payment(Yii::$app->params['wechatPayConfig']);
+            self::$_miniProgram = Factory::miniProgram(Yii::$app->params['wechatMiniProgramConfig']);
         }
 
-        return self::$_payApp;
+        return self::$_miniProgram;
     }
 
     /**
