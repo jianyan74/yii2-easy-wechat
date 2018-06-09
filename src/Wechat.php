@@ -51,6 +51,20 @@ class Wechat extends Component
     private static $_miniProgram;
 
     /**
+     * 第三方开放平台 SKD
+     *
+     * @var Factory
+     */
+    private static $_openPlatform;
+
+    /**
+     * 企业微信 SKD
+     *
+     * @var Factory
+     */
+    private static $_work;
+
+    /**
      * @var WechatUser
      */
     private static $_user;
@@ -156,7 +170,7 @@ class Wechat extends Component
     }
 
     /**
-     * 获取 EasyWeChat 微信支付实例
+     * 获取 EasyWeChat 微信小程序实例
      *
      * @return Factory
      */
@@ -168,6 +182,36 @@ class Wechat extends Component
         }
 
         return self::$_miniProgram;
+    }
+
+    /**
+     * 获取 EasyWeChat 微信第三方开放平台实例
+     *
+     * @return Factory
+     */
+    public function getOpenPlatform()
+    {
+        if (!self::$_openPlatform instanceof Factory)
+        {
+            self::$_openPlatform = Factory::openPlatform(Yii::$app->params['wechatOpenPlatformConfig']);
+        }
+
+        return self::$_openPlatform;
+    }
+
+    /**
+     * 获取 EasyWeChat 企业微信实例
+     *
+     * @return Factory
+     */
+    public function getWork()
+    {
+        if (!self::$_work instanceof Factory)
+        {
+            self::$_work = Factory::work(Yii::$app->params['wechatWorkConfig']);
+        }
+
+        return self::$_work;
     }
 
     /**

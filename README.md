@@ -44,11 +44,21 @@ composer require jianyan74/yii2-easy-wechat
 
 // 微信小程序配置 具体可参考EasyWechat
 'wechatMiniProgramConfig' => [],
+
+// 微信开放平台第三方平台配置 具体可参考EasyWechat
+'wechatOpenPlatformConfig' => [],
+
+// 微信企业微信配置 具体可参考EasyWechat
+'wechatWorkConfig' => [],
 ```
+
+配置文档
 
 [微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
 [微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)  
-[微信小程序配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/mini-program/index)
+[微信小程序配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/mini-program/index)  
+[微信开放平台第三方平台](https://www.easywechat.com/docs/master/zh-CN/open-platform/index)  
+[企业微信](https://www.easywechat.com/docs/master/zh-CN/wework/index)
 
 ## 使用例子
 
@@ -75,6 +85,20 @@ $payment = Yii::$app->wechat->payment;
 ```php
 $miniProgram = Yii::$app->wechat->miniProgram;
 ```
+
+获取微信开放平台第三方平台实例
+
+```php
+$openPlatform = Yii::$app->wechat->openPlatform;
+```
+
+获取企业微信实例
+
+```php
+$work = Yii::$app->wechat->work;
+```
+
+
 微信支付(JsApi):
 
 ```php
