@@ -26,9 +26,9 @@ composer require jianyan74/yii2-easy-wechat
 	// ...
 	'wechat' => [
 		'class' => 'jianyan\easywechat\Wechat',
-		// 'userOptions' => []  # 用户身份类参数
-		// 'sessionParam' => '' # 微信用户信息将存储在会话在这个密钥
-		// 'returnUrlParam' => '' # returnUrl 存储在会话中
+		'userOptions' => [],  // 用户身份类参数
+		'sessionParam' => 'wechatUser', // 微信用户信息将存储在会话在这个密钥
+		'returnUrlParam' => '_wechatReturnUrl', // returnUrl 存储在会话中
 	],
 	// ...
 ]
@@ -62,13 +62,21 @@ composer require jianyan74/yii2-easy-wechat
 
 ## 使用例子
 
-微信网页授权
+
+微信网页授权+获取当前用户信息
 
 ```php
 if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) 
 {
     return Yii::$app->wechat->authorizeRequired()->send();
 }
+
+
+// 获取微信当前用户信息方法一
+Yii::$app->session->get('wechatUser')
+
+// 获取微信当前用户信息方法二
+Yii::$app->wechat->user
 ```
 获取微信SDK实例
 
