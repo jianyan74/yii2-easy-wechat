@@ -162,7 +162,7 @@ JSSDK发起支付
  
  ### 实例
 
- [RageFrame](https://github.com/jianyan74/rageframe2).
+ [RageFrame](https://github.com/jianyan74/rageframe2)
 
 ### 问题反馈
 
