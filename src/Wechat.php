@@ -241,7 +241,7 @@ class Wechat extends Component
             self::$_openWork = Factory::openWork(Yii::$app->params['wechatOpenWorkConfig']);
         }
 
-        return self::$_work;
+        return self::$_openWork;
     }
 
     /**
