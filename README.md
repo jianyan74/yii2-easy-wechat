@@ -156,6 +156,28 @@ JSSDK发起支付
 </script>
 ```
 
+### 智能提示
+
+如果你需要编辑器（PhpStorm等）的智能提示来使用`Yii::$app->wechat`，可以在`yii\base\Application`中加入:
+```
+<?php
+namespace yii\base;
+
+use Yii;
+
+/**
+ *
+ * @property \jianyan\easywechat\Wechat $wechat 加入这一行即可实现编辑器智能提示.
+ *
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
+abstract class Application extends Module
+{
+
+}
+```
+
 ### 更多的文档
 
  [EasyWeChat Docs](https://www.easywechat.com/docs/master).

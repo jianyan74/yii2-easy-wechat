@@ -7,7 +7,14 @@ use yii\base\Component;
 
 /**
  * Class Wechat
+ *
  * @package jianyan\easywechat
+ *
+ * @property \EasyWeChat\OfficialAccount\Application $app 微信SDK实例
+ * @property \EasyWeChat\Payment\Application $payment 微信支付SDK实例
+ * @property \EasyWeChat\MiniProgram\Application $miniProgram 微信小程序实例
+ * @property \EasyWeChat\OpenPlatform\Application $openPlatform 微信开放平台(第三方平台)实例
+ * @property \EasyWeChat\Work\Application $work 企业微信实例
  */
 class Wechat extends Component
 {
