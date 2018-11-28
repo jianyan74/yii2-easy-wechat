@@ -15,6 +15,7 @@ use yii\base\Component;
  * @property \EasyWeChat\MiniProgram\Application $miniProgram 微信小程序实例
  * @property \EasyWeChat\OpenPlatform\Application $openPlatform 微信开放平台(第三方平台)实例
  * @property \EasyWeChat\Work\Application $work 企业微信实例
+ * @property \EasyWeChat\OpenWork\Application $openWork 企业微信开放平台实例
  */
 class Wechat extends Component
 {
@@ -70,6 +71,13 @@ class Wechat extends Component
      * @var Factory
      */
     private static $_work;
+
+    /**
+     * 企业微信开放平台 SKD
+     *
+     * @var Factory
+     */
+    private static $_openWork;
 
     /**
      * @var WechatUser
@@ -216,6 +224,21 @@ class Wechat extends Component
         if (!self::$_work instanceof Factory)
         {
             self::$_work = Factory::work(Yii::$app->params['wechatWorkConfig']);
+        }
+
+        return self::$_work;
+    }
+
+    /**
+     * 获取 EasyWeChat 企业微信开放平台实例
+     *
+     * @return Factory
+     */
+    public function getOpenWork()
+    {
+        if (!self::$_openWork instanceof Factory)
+        {
+            self::$_openWork = Factory::openWork(Yii::$app->params['wechatOpenWorkConfig']);
         }
 
         return self::$_work;

@@ -50,6 +50,9 @@ composer require jianyan74/yii2-easy-wechat
 
 // 微信企业微信配置 具体可参考EasyWechat
 'wechatWorkConfig' => [],
+
+// 微信企业微信开放平台 具体可参考EasyWechat
+'wechatOpenWorkConfig' => [],
 ```
 
 配置文档
@@ -58,7 +61,8 @@ composer require jianyan74/yii2-easy-wechat
 [微信支付配置说明文档.](https://www.easywechat.com/docs/master/payment/jssdk)  
 [微信小程序配置说明文档.](https://www.easywechat.com/docs/master/mini-program/index)  
 [微信开放平台第三方平台](https://www.easywechat.com/docs/master/open-platform/index)  
-[企业微信](https://www.easywechat.com/docs/master/wework/index)
+[企业微信](https://www.easywechat.com/docs/master/wework/index)  
+[企业微信开放平台](https://www.easywechat.com/docs/master/open-work/index)
 
 ## 使用例子
 
@@ -104,6 +108,12 @@ $openPlatform = Yii::$app->wechat->openPlatform;
 
 ```php
 $work = Yii::$app->wechat->work;
+```
+
+获取微信企业微信开放平台
+
+```php
+$work = Yii::$app->wechat->openWork;
 ```
 
 
