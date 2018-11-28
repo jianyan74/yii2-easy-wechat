@@ -54,11 +54,11 @@ composer require jianyan74/yii2-easy-wechat
 
 配置文档
 
-[微信配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/official-account/configuration)  
-[微信支付配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/payment/jssdk)  
-[微信小程序配置说明文档.](https://www.easywechat.com/docs/master/zh-CN/mini-program/index)  
-[微信开放平台第三方平台](https://www.easywechat.com/docs/master/zh-CN/open-platform/index)  
-[企业微信](https://www.easywechat.com/docs/master/zh-CN/wework/index)
+[微信配置说明文档.](https://www.easywechat.com/docs/master/official-account/configuration)  
+[微信支付配置说明文档.](https://www.easywechat.com/docs/master/payment/jssdk)  
+[微信小程序配置说明文档.](https://www.easywechat.com/docs/master/mini-program/index)  
+[微信开放平台第三方平台](https://www.easywechat.com/docs/master/open-platform/index)  
+[企业微信](https://www.easywechat.com/docs/master/wework/index)
 
 ## 使用例子
 
