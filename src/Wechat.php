@@ -16,6 +16,9 @@ use yii\base\Component;
  * @property \EasyWeChat\OpenPlatform\Application $openPlatform 微信开放平台(第三方平台)实例
  * @property \EasyWeChat\Work\Application $work 企业微信实例
  * @property \EasyWeChat\OpenWork\Application $openWork 企业微信开放平台实例
+ *
+ * @property bool $isWechat 检查客户端是否是微信浏览器
+ * @property WechatUser $user 获取微信身份信息
  */
 class Wechat extends Component
 {
