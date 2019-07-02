@@ -1,9 +1,10 @@
 <?php
+
 namespace jianyan\easywechat;
 
 use Yii;
-use EasyWeChat\Factory;
 use yii\base\Component;
+use EasyWeChat\Factory;
 
 /**
  * Class Wechat
@@ -16,9 +17,6 @@ use yii\base\Component;
  * @property \EasyWeChat\OpenPlatform\Application $openPlatform 微信开放平台(第三方平台)实例
  * @property \EasyWeChat\Work\Application $work 企业微信实例
  * @property \EasyWeChat\OpenWork\Application $openWork 企业微信开放平台实例
- *
- * @property bool $isWechat 检查客户端是否是微信浏览器
- * @property WechatUser $user 获取微信身份信息
  */
 class Wechat extends Component
 {
@@ -93,13 +91,10 @@ class Wechat extends Component
      */
     public function authorizeRequired()
     {
-        if(Yii::$app->request->get('code'))
-        {
+        if (Yii::$app->request->get('code')) {
             // callback and authorize
             return $this->authorize($this->app->oauth->user());
-        }
-        else
-        {
+        } else {
             // redirect to wechat authorize page
             $this->setReturnUrl(Yii::$app->request->getUrl());
             return Yii::$app->response->redirect($this->app->oauth->redirect()->getTargetUrl());
@@ -142,14 +137,10 @@ class Wechat extends Component
     public function getReturnUrl($defaultUrl = null)
     {
         $url = Yii::$app->session->get($this->returnUrlParam, $defaultUrl);
-        if (is_array($url))
-        {
-            if (isset($url[0]))
-            {
+        if (is_array($url)) {
+            if (isset($url[0])) {
                 return Yii::$app->getUrlManager()->createUrl($url);
-            }
-            else
-            {
+            } else {
                 $url = null;
             }
         }
@@ -164,8 +155,7 @@ class Wechat extends Component
      */
     public function getApp()
     {
-        if (!self::$_app instanceof Factory)
-        {
+        if (!self::$_app instanceof \EasyWeChat\OfficialAccount\Application) {
             self::$_app = Factory::officialAccount(Yii::$app->params['wechatConfig']);
         }
 
@@ -175,12 +165,11 @@ class Wechat extends Component
     /**
      * 获取 EasyWeChat 微信支付实例
      *
-     * @return Factory
+     * @return Factory|\EasyWeChat\Payment\Application
      */
     public function getPayment()
     {
-        if (!self::$_payment instanceof Factory)
-        {
+        if (!self::$_payment instanceof \EasyWeChat\Payment\Application) {
             self::$_payment = Factory::payment(Yii::$app->params['wechatPaymentConfig']);
         }
 
@@ -190,12 +179,11 @@ class Wechat extends Component
     /**
      * 获取 EasyWeChat 微信小程序实例
      *
-     * @return Factory
+     * @return Factory|\EasyWeChat\MiniProgram\Application
      */
     public function getMiniProgram()
     {
-        if (!self::$_miniProgram instanceof Factory)
-        {
+        if (!self::$_miniProgram instanceof \EasyWeChat\MiniProgram\Application) {
             self::$_miniProgram = Factory::miniProgram(Yii::$app->params['wechatMiniProgramConfig']);
         }
 
@@ -205,12 +193,11 @@ class Wechat extends Component
     /**
      * 获取 EasyWeChat 微信第三方开放平台实例
      *
-     * @return Factory
+     * @return Factory|\EasyWeChat\OpenPlatform\Application
      */
     public function getOpenPlatform()
     {
-        if (!self::$_openPlatform instanceof Factory)
-        {
+        if (!self::$_openPlatform instanceof \EasyWeChat\OpenPlatform\Application) {
             self::$_openPlatform = Factory::openPlatform(Yii::$app->params['wechatOpenPlatformConfig']);
         }
 
@@ -220,12 +207,11 @@ class Wechat extends Component
     /**
      * 获取 EasyWeChat 企业微信实例
      *
-     * @return Factory
+     * @return Factory|\EasyWeChat\Work\Application
      */
     public function getWork()
     {
-        if (!self::$_work instanceof Factory)
-        {
+        if (!self::$_work instanceof \EasyWeChat\Work\Application) {
             self::$_work = Factory::work(Yii::$app->params['wechatWorkConfig']);
         }
 
@@ -235,12 +221,11 @@ class Wechat extends Component
     /**
      * 获取 EasyWeChat 企业微信开放平台实例
      *
-     * @return Factory
+     * @return Factory|\EasyWeChat\OpenWork\Application
      */
     public function getOpenWork()
     {
-        if (!self::$_openWork instanceof Factory)
-        {
+        if (!self::$_openWork instanceof \EasyWeChat\OpenWork\Application) {
             self::$_openWork = Factory::openWork(Yii::$app->params['wechatOpenWorkConfig']);
         }
 
@@ -254,13 +239,11 @@ class Wechat extends Component
      */
     public function getUser()
     {
-        if (!$this->isAuthorized())
-        {
+        if (!$this->isAuthorized()) {
             return new WechatUser();
         }
 
-        if (! self::$_user instanceof WechatUser)
-        {
+        if (!self::$_user instanceof WechatUser) {
             $userInfo = Yii::$app->session->get($this->sessionParam);
             $config = $userInfo ? json_decode($userInfo, true) : [];
             self::$_user = new WechatUser($config);
@@ -276,18 +259,12 @@ class Wechat extends Component
      */
     public function __get($name)
     {
-        try
-        {
+        try {
             return parent::__get($name);
-        }
-        catch (\Exception $e)
-        {
-            if($this->getApp()->$name)
-            {
+        } catch (\Exception $e) {
+            if ($this->getApp()->$name) {
                 return $this->app->$name;
-            }
-            else
-            {
+            } else {
                 throw $e->getPrevious();
             }
         }

@@ -70,11 +70,9 @@ composer require jianyan74/yii2-easy-wechat
 微信网页授权+获取当前用户信息
 
 ```php
-if(Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) 
-{
+if (Yii::$app->wechat->isWechat && !Yii::$app->wechat->isAuthorized()) {
     return Yii::$app->wechat->authorizeRequired()->send();
 }
-
 
 // 获取微信当前用户信息方法一
 Yii::$app->session->get('wechatUser')
@@ -129,18 +127,15 @@ $orderData = [
 // 生成支付配置
 $payment = Yii::$app->wechat->payment;
 $result = $payment->order->unify($orderData);
-if ($result['return_code'] == 'SUCCESS')
-{
+if ($result['return_code'] == 'SUCCESS') {
     $prepayId = $result['prepay_id'];
     $config = $payment->jssdk->sdkConfig($prepayId);
-}
-else
-{
+} else {
     throw new yii\base\ErrorException('微信支付异常, 请稍后再试');
 }  
 
 return $this->render('wxpay', [
-    'jssdk' => $app->jssdk, // $app通过上面的获取实例来获取
+    'jssdk' => $payment->jssdk, // $app通过上面的获取实例来获取
     'config' => $config
 ]);
 
