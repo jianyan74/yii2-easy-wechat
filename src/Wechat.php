@@ -39,6 +39,11 @@ class Wechat extends Component
     public $returnUrlParam = '_wechatReturnUrl';
 
     /**
+     * @var array
+     */
+    public $rebinds = [];
+
+    /**
      * 微信SDK
      *
      * @var Factory
@@ -157,6 +162,7 @@ class Wechat extends Component
     {
         if (!self::$_app instanceof \EasyWeChat\OfficialAccount\Application) {
             self::$_app = Factory::officialAccount(Yii::$app->params['wechatConfig']);
+            !empty($this->rebinds) && self::$_app = $this->rebind(self::$_app);
         }
 
         return self::$_app;
@@ -171,6 +177,7 @@ class Wechat extends Component
     {
         if (!self::$_payment instanceof \EasyWeChat\Payment\Application) {
             self::$_payment = Factory::payment(Yii::$app->params['wechatPaymentConfig']);
+            !empty($this->rebinds) && self::$_payment = $this->rebind(self::$_payment);
         }
 
         return self::$_payment;
@@ -185,6 +192,7 @@ class Wechat extends Component
     {
         if (!self::$_miniProgram instanceof \EasyWeChat\MiniProgram\Application) {
             self::$_miniProgram = Factory::miniProgram(Yii::$app->params['wechatMiniProgramConfig']);
+            !empty($this->rebinds) && self::$_miniProgram = $this->rebind(self::$_miniProgram);
         }
 
         return self::$_miniProgram;
@@ -199,6 +207,7 @@ class Wechat extends Component
     {
         if (!self::$_openPlatform instanceof \EasyWeChat\OpenPlatform\Application) {
             self::$_openPlatform = Factory::openPlatform(Yii::$app->params['wechatOpenPlatformConfig']);
+            !empty($this->rebinds) && self::$_openPlatform = $this->rebind(self::$_openPlatform);
         }
 
         return self::$_openPlatform;
@@ -213,6 +222,7 @@ class Wechat extends Component
     {
         if (!self::$_work instanceof \EasyWeChat\Work\Application) {
             self::$_work = Factory::work(Yii::$app->params['wechatWorkConfig']);
+            !empty($this->rebinds) && self::$_work = $this->rebind(self::$_work);
         }
 
         return self::$_work;
@@ -227,9 +237,22 @@ class Wechat extends Component
     {
         if (!self::$_openWork instanceof \EasyWeChat\OpenWork\Application) {
             self::$_openWork = Factory::openWork(Yii::$app->params['wechatOpenWorkConfig']);
+            !empty($this->rebinds) && self::$_openWork = $this->rebind(self::$_openWork);
         }
 
         return self::$_openWork;
+    }
+
+    /**
+     * @param $app
+     */
+    public function rebind($app)
+    {
+        foreach ($this->rebinds as $key => $class) {
+            $app->rebind($key, new $class());
+        }
+
+        return $app;
     }
 
     /**
@@ -262,11 +285,7 @@ class Wechat extends Component
         try {
             return parent::__get($name);
         } catch (\Exception $e) {
-            if ($this->getApp()->$name) {
-                return $this->app->$name;
-            } else {
-                throw $e->getPrevious();
-            }
+            throw $e->getPrevious();
         }
     }
 
