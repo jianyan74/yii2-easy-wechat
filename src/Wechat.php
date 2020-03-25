@@ -17,6 +17,7 @@ use EasyWeChat\Factory;
  * @property \EasyWeChat\OpenPlatform\Application $openPlatform 微信开放平台(第三方平台)实例
  * @property \EasyWeChat\Work\Application $work 企业微信实例
  * @property \EasyWeChat\OpenWork\Application $openWork 企业微信开放平台实例
+ * @property \EasyWeChat\MicroMerchant\Application $microMerchant 小微商户实例
  */
 class Wechat extends Component
 {
@@ -84,6 +85,13 @@ class Wechat extends Component
      * @var Factory
      */
     private static $_openWork;
+
+    /**
+     * 小微商户
+     *
+     * @var Factory
+     */
+    private static $_microMerchant;
 
     /**
      * @var WechatUser
@@ -244,7 +252,25 @@ class Wechat extends Component
     }
 
     /**
+     * 获取 EasyWeChat 小微企业实例
+     *
+     * @return Factory|\EasyWeChat\OpenWork\Application
+     */
+    public function getMicroMerchant()
+    {
+        if (!self::$_microMerchant instanceof \EasyWeChat\MicroMerchant\Application) {
+            self::$_microMerchant = Factory::microMerchant(Yii::$app->params['wechatMicroMerchantConfig']);
+            !empty($this->rebinds) && self::$_microMerchant = $this->rebind(self::$_microMerchant);
+        }
+
+        return self::$_microMerchant;
+    }
+
+    /**
+     * $app
+     *
      * @param $app
+     * @return mixed
      */
     public function rebind($app)
     {

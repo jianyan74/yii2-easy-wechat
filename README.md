@@ -56,6 +56,9 @@ composer require jianyan74/yii2-easy-wechat
 
 // 微信企业微信开放平台 具体可参考EasyWechat
 'wechatOpenWorkConfig' => [],
+
+// 微信小微商户 具体可参考EasyWechat
+'wechatMicroMerchantConfig' => [],
 ```
 
 配置文档
@@ -65,7 +68,8 @@ composer require jianyan74/yii2-easy-wechat
 [微信小程序配置说明文档.](https://www.easywechat.com/docs/master/mini-program/index)  
 [微信开放平台第三方平台](https://www.easywechat.com/docs/master/open-platform/index)  
 [企业微信](https://www.easywechat.com/docs/master/wework/index)  
-[企业微信开放平台](https://www.easywechat.com/docs/master/open-work/index)
+[企业微信开放平台](https://www.easywechat.com/docs/master/open-work/index)  
+[小微商户](https://www.easywechat.com/docs/master/micro-merchant/index)
 
 ## 使用例子
 
@@ -115,6 +119,12 @@ $work = Yii::$app->wechat->work;
 
 ```php
 $work = Yii::$app->wechat->openWork;
+```
+
+获取微信小微商户
+
+```php
+$microMerchant = Yii::$app->wechat->microMerchant;
 ```
 
 
@@ -169,6 +179,7 @@ JSSDK发起支付
 如果你需要编辑器（PhpStorm等）的智能提示来使用`Yii::$app->wechat`，可以在`yii\base\Application`中加入:
 ```
 <?php
+
 namespace yii\base;
 
 use Yii;
