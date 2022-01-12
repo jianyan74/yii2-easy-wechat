@@ -1,6 +1,6 @@
 # yii2-easy-wechat
 
-> 基于最新的 overtrue/wechat 4.x
+> 支持 overtrue/wechat 4.x 和 5.x
 
 由于 [max-wen/yii2-easy-wechat](https://github.com/max-wen/yii2-easy-wechat) 不支持 EasyWechat 4.x 所以建立该项目
 
