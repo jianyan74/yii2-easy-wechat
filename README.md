@@ -11,9 +11,14 @@ WeChat SDK for Yii2 , 基于 [overtrue/wechat](https://github.com/overtrue/wecha
 [![Total Downloads](https://poser.pugx.org/jianyan74/yii2-easy-wechat/downloads)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
 [![License](https://poser.pugx.org/jianyan74/yii2-easy-wechat/license)](https://packagist.org/packages/jianyan74/yii2-easy-wechat)
 
-## 安装
+## 安装 EasyWechat 4.x
 ```
-composer require jianyan74/yii2-easy-wechat
+composer require jianyan74/yii2-easy-wechat:~1.0
+```
+
+## 安装 EasyWechat 5.x
+```
+composer require jianyan74/yii2-easy-wechat:~2.0
 ```
 
 ## 配置
